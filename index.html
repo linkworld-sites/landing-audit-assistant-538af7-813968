@@ -25,331 +25,394 @@ h2{font-size:clamp(1.8rem,4vw,2.8rem);letter-spacing:-.01em}
 </style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Audit Assistant — Der KI-Kollege für Gutachter</title>
+<title>Audit Assistant — KI-gestützte Gutachtenerstellung für Sachverständige</title>
 <style>
   :root{
-    --accent: #0f6b52;
-    --accent-2: #d98b1f;
-    --ok: #1f9d55;
-  }
-  *{box-sizing:border-box;}
-  body{
-    background:
-      radial-gradient(1200px 600px at 100% -10%, rgba(15,107,82,0.08), transparent 60%),
-      radial-gradient(900px 500px at -10% 10%, rgba(217,139,31,0.06), transparent 60%),
-      var(--bg);
+    --accent: #0f6b62;
+    --accent-2: #c8952a;
+    --accent-soft: rgba(15,107,98,0.12);
   }
 
-  /* ---------- NAV ---------- */
-  .nav{
-    position:sticky; top:0; z-index:50;
+  body{ background:
+    radial-gradient(1200px 600px at 85% -10%, rgba(15,107,98,0.10), transparent 60%),
+    radial-gradient(900px 500px at -10% 10%, rgba(200,149,42,0.08), transparent 55%),
+    var(--bg);
+  }
+
+  /* ---------- Nav ---------- */
+  .navbar{
+    position: sticky; top:0; z-index: 50;
     display:flex; align-items:center; justify-content:space-between;
-    padding:16px 6vw;
-    background:color-mix(in srgb, var(--bg) 82%, transparent);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--border);
+    padding: 18px 0;
+    backdrop-filter: blur(10px);
+    background: color-mix(in srgb, var(--bg) 78%, transparent);
+    border-bottom: 1px solid var(--border);
   }
-  .logo{
+  .brand-mark{
     display:flex; align-items:center; gap:10px;
-    font-weight:800; letter-spacing:-0.02em; font-size:1.05rem;
+    font-weight:700; letter-spacing:-0.02em; font-size:1.05rem;
+    color: var(--fg);
   }
-  .logo-mark{
-    width:30px;height:30px;border-radius:8px;
-    background:linear-gradient(135deg, var(--accent), var(--accent-2));
-    display:flex;align-items:center;justify-content:center;
-    color:#fff;font-size:14px;font-weight:900;
-    box-shadow:0 4px 14px rgba(15,107,82,0.35);
+  .brand-mark .dot{
+    width:10px; height:10px; border-radius:3px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    box-shadow: 0 0 0 4px var(--accent-soft);
   }
-  .nav-links{display:flex; gap:28px; align-items:center;}
-  .nav-links a{color:var(--fg-muted); text-decoration:none; font-size:0.92rem;}
-  .nav-links a:hover{color:var(--fg);}
-  .nav-cta{display:flex; gap:10px; align-items:center;}
+  .nav-links{ display:flex; gap:28px; align-items:center; }
+  .nav-links a{ color: var(--fg-muted); text-decoration:none; font-size:0.92rem; transition: color .2s; }
+  .nav-links a:hover{ color: var(--fg); }
 
-  /* ---------- HERO ---------- */
+  /* ---------- Hero ---------- */
   .hero{
-    position:relative;
-    padding-top:72px;
-    overflow:hidden;
+    padding: 96px 0 70px;
+    position: relative;
+    overflow: hidden;
   }
-  .hero-grid{
-    display:grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap:48px;
-    align-items:center;
-  }
-  @media (max-width:900px){ .hero-grid{grid-template-columns:1fr;} }
-
-  .kicker{
+  .eyebrow{
     display:inline-flex; align-items:center; gap:8px;
-    padding:6px 14px; border-radius:999px;
-    background:color-mix(in srgb, var(--accent) 12%, transparent);
-    border:1px solid color-mix(in srgb, var(--accent) 35%, var(--border));
-    color:var(--accent);
-    font-size:0.78rem; font-weight:700; letter-spacing:0.03em;
-    text-transform:uppercase;
-    margin-bottom:18px;
+    font-size: 0.78rem; letter-spacing:0.08em; text-transform:uppercase;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    padding: 6px 14px; border-radius: 999px;
+    margin-bottom: 26px;
+    font-weight:600;
   }
-  .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--ok); box-shadow:0 0 0 3px color-mix(in srgb, var(--ok) 25%, transparent);}
+  .hero h1{
+    font-size: clamp(2.3rem, 4.8vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    max-width: 15ch;
+    margin: 0 0 22px;
+  }
+  .hero h1 em{
+    font-style: normal;
+    background: linear-gradient(100deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero p.lead{
+    font-size: 1.15rem;
+    max-width: 46ch;
+    color: var(--fg-muted);
+    margin-bottom: 36px;
+  }
+  .hero-cta{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom: 56px; }
 
-  h1.headline{
-    font-size:clamp(2.1rem, 4.2vw, 3.4rem);
-    line-height:1.06;
-    letter-spacing:-0.03em;
-    margin:0 0 20px;
+  .hero-visual{
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    padding: 22px;
+    box-shadow: 0 30px 80px -30px rgba(0,0,0,0.35);
   }
-  h1.headline em{
-    font-style:normal;
-    background:linear-gradient(100deg, var(--accent), var(--accent-2));
+  .visual-topbar{
+    display:flex; gap:6px; margin-bottom:18px;
+  }
+  .visual-topbar span{ width:10px; height:10px; border-radius:50%; background: var(--border); }
+  .visual-grid{
+    display:grid; grid-template-columns: 1.3fr 1fr; gap: 16px;
+  }
+  .visual-block{
+    border: 1px dashed var(--border);
+    border-radius: calc(var(--radius) - 6px);
+    padding: 14px;
+    font-size: 0.82rem;
+    color: var(--fg-muted);
+  }
+  .visual-block strong{ display:block; color: var(--fg); font-size:0.85rem; margin-bottom:6px; }
+  .pill-row{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+  .pill{
+    font-size: 0.72rem; padding: 4px 10px; border-radius: 999px;
+    background: var(--accent-soft); color: var(--accent); border:1px solid transparent;
+  }
+  .progress{
+    height: 6px; border-radius: 999px; background: var(--border);
+    overflow:hidden; margin-top: 12px;
+  }
+  .progress i{
+    display:block; height:100%; width: 78%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    border-radius: 999px;
+  }
+
+  /* stat strip */
+  .stat-strip{
+    display:flex; flex-wrap:wrap; gap: 40px;
+    padding: 34px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+  }
+  .stat{ min-width: 140px; }
+  .stat .num{
+    font-size: 2rem; font-weight:700; letter-spacing:-0.02em;
+    background: linear-gradient(100deg, var(--fg), var(--accent));
     -webkit-background-clip:text; background-clip:text; color:transparent;
   }
-  .sub{
-    font-size:1.08rem; color:var(--fg-muted); max-width:52ch; margin-bottom:32px;
-  }
-  .hero-cta{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:28px;}
-  .btn-wa{
-    background:var(--accent); border-color:var(--accent); color:#fff;
-    display:inline-flex; align-items:center; gap:9px;
-  }
-  .btn-wa svg{width:17px;height:17px;fill:#fff;}
+  .stat .label{ font-size:0.85rem; color:var(--fg-muted); }
 
-  .trust-row{display:flex; gap:26px; flex-wrap:wrap; color:var(--fg-muted); font-size:0.82rem;}
-  .trust-row span{display:flex; align-items:center; gap:6px;}
-  .trust-row b{color:var(--fg); font-weight:700;}
+  /* ---------- Features ---------- */
+  .section-head{ max-width: 60ch; margin-bottom: 46px; }
+  .section-head .kicker{
+    color: var(--accent); font-weight:600; font-size:0.85rem;
+    text-transform:uppercase; letter-spacing:0.08em; margin-bottom:12px; display:block;
+  }
+  .section-head h2{ font-size: clamp(1.7rem,3vw,2.3rem); letter-spacing:-0.02em; margin: 0 0 12px; }
 
-  /* phone mockup */
-  .phone{
-    position:relative; margin-inline:auto; max-width:320px;
-    border-radius:34px; background:#0c1512; padding:12px;
-    box-shadow:0 30px 60px -20px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.05);
-    transform:rotate(1.5deg);
-    transition:transform .4s ease;
+  .feature-card{
+    position: relative;
+    overflow: hidden;
+    transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+    will-change: transform;
   }
-  .phone:hover{transform:rotate(0deg) translateY(-4px);}
-  .phone-screen{
-    background:#e9edea; border-radius:24px; overflow:hidden; min-height:420px;
-    display:flex; flex-direction:column;
+  .feature-card:hover{
+    transform: translateY(-6px);
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+    box-shadow: 0 20px 50px -25px rgba(0,0,0,0.4);
   }
-  .phone-bar{
-    background:#0f6b52; color:#fff; padding:12px 14px; font-size:0.82rem; font-weight:700;
-    display:flex; align-items:center; gap:8px;
+  .feature-card .ico{
+    width: 42px; height:42px; border-radius: 12px;
+    display:flex; align-items:center; justify-content:center;
+    background: var(--accent-soft); color: var(--accent);
+    font-size: 1.15rem; margin-bottom: 18px;
   }
-  .phone-bar .av{width:26px;height:26px;border-radius:50%;background:#d98b1f; display:flex;align-items:center;justify-content:center; font-size:12px;}
-  .chat{flex:1; padding:12px; display:flex; flex-direction:column; gap:8px; font-size:0.78rem;}
-  .bubble{max-width:80%; padding:8px 11px; border-radius:12px; line-height:1.4;}
-  .bubble.in{background:#fff; align-self:flex-start; border-bottom-left-radius:3px; box-shadow:0 1px 1px rgba(0,0,0,0.06);}
-  .bubble.out{background:#d9fdd3; align-self:flex-end; border-bottom-right-radius:3px;}
-  .bubble.img{padding:5px; background:#fff;}
-  .bubble.img .ph{width:100%; height:70px; border-radius:8px; background:linear-gradient(135deg,#9fb, #6a8);}
-  .typing{align-self:flex-start; display:flex; gap:4px; padding:8px 12px; background:#fff; border-radius:12px;}
-  .typing span{width:6px;height:6px;border-radius:50%;background:#9aa; animation:blink 1.2s infinite;}
-  .typing span:nth-child(2){animation-delay:.2s;} .typing span:nth-child(3){animation-delay:.4s;}
-  @keyframes blink{0%,80%,100%{opacity:.2;}40%{opacity:1;}}
-
-  /* ---------- FEATURES ---------- */
-  .section-head{max-width:640px; margin-bottom:44px;}
-  .section-head h2{font-size:clamp(1.6rem,2.6vw,2.2rem); letter-spacing:-0.02em; margin:0 0 12px;}
-
-  .feat-card{
-    position:relative; overflow:hidden;
-    transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;
-  }
-  .feat-card:hover{
-    transform:translateY(-5px);
-    border-color:color-mix(in srgb, var(--accent) 40%, var(--border));
-    box-shadow:0 16px 30px -18px rgba(0,0,0,0.35);
-  }
-  .feat-icon{
-    width:42px; height:42px; border-radius:11px;
-    background:color-mix(in srgb, var(--accent) 14%, transparent);
-    color:var(--accent); display:flex; align-items:center; justify-content:center;
-    font-size:19px; margin-bottom:16px;
-  }
-  .feat-card h3{margin:0 0 8px; font-size:1.05rem; letter-spacing:-0.01em;}
-  .feat-card p{margin:0; color:var(--fg-muted); font-size:0.9rem; line-height:1.55;}
-  .feat-tag{
+  .feature-card h3{ font-size: 1.05rem; margin: 0 0 8px; letter-spacing:-0.01em; }
+  .feature-card p{ font-size: 0.92rem; color: var(--fg-muted); margin:0; line-height:1.55; }
+  .feature-card .tag{
     position:absolute; top:16px; right:16px;
-    font-size:0.65rem; text-transform:uppercase; letter-spacing:0.04em;
-    color:var(--accent-2); font-weight:800;
+    font-size:0.65rem; letter-spacing:0.04em; text-transform:uppercase;
+    color: var(--accent-2); font-weight:700;
   }
 
-  /* ---------- HOW ---------- */
-  .steps{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
-  @media (max-width:900px){.steps{grid-template-columns:1fr 1fr;}}
-  @media (max-width:520px){.steps{grid-template-columns:1fr;}}
-  .step{position:relative; padding-top:8px;}
-  .step-num{
-    font-size:0.75rem; font-weight:800; color:var(--accent);
-    border:1px solid var(--border); width:28px; height:28px; border-radius:50%;
-    display:flex; align-items:center; justify-content:center; margin-bottom:14px;
+  /* secondary capability list */
+  .mini-grid{
+    display:grid; grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+    gap: 2px; background: var(--border);
+    border: 1px solid var(--border); border-radius: var(--radius);
+    overflow: hidden; margin-top: 10px;
   }
-  .step h4{margin:0 0 8px; font-size:0.98rem;}
-  .step p{margin:0; color:var(--fg-muted); font-size:0.86rem; line-height:1.5;}
-  .step-line{position:absolute; top:14px; left:100%; width:20px; height:1px; background:var(--border);}
-  @media (max-width:900px){.step-line{display:none;}}
+  .mini-item{
+    background: var(--surface); padding: 20px;
+    display:flex; gap:12px; align-items:flex-start;
+  }
+  .mini-item .dot2{
+    margin-top:6px; width:6px; height:6px; border-radius:50%;
+    background: var(--accent-2); flex-shrink:0;
+  }
+  .mini-item p{ margin:0; font-size:0.87rem; color: var(--fg-muted); }
+  .mini-item p b{ color: var(--fg); font-weight:600; }
 
-  /* ---------- DEEP DIVE ---------- */
-  .deep{
-    display:grid; grid-template-columns: 0.9fr 1.1fr; gap:40px; align-items:start;
-    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
-    padding:40px; margin-top:8px;
+  /* ---------- Workflow ---------- */
+  .workflow{ display:grid; grid-template-columns: repeat(4,1fr); gap:20px; counter-reset: step; }
+  .wf-step{ position:relative; padding-top: 42px; }
+  .wf-step::before{
+    counter-increment: step;
+    content: counter(step);
+    position:absolute; top:0; left:0;
+    width:32px; height:32px; border-radius:9px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color:#fff; font-weight:700; font-size:0.9rem;
+    display:flex; align-items:center; justify-content:center;
   }
-  @media (max-width:900px){.deep{grid-template-columns:1fr;}}
-  .deep-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:16px;}
-  .deep-list li{
-    display:flex; gap:12px; padding:14px; border-radius:10px;
-    border:1px solid var(--border); background:var(--bg);
-    transition:border-color .2s ease;
-  }
-  .deep-list li:hover{border-color:var(--accent);}
-  .deep-list .chk{
-    flex:none; width:20px;height:20px; border-radius:6px;
-    background:color-mix(in srgb, var(--ok) 18%, transparent); color:var(--ok);
-    display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:900;
-  }
-  .deep-list b{display:block; font-size:0.88rem; margin-bottom:2px;}
-  .deep-list span{font-size:0.82rem; color:var(--fg-muted);}
+  .wf-step h4{ margin: 0 0 6px; font-size:0.98rem; }
+  .wf-step p{ margin:0; font-size:0.85rem; color: var(--fg-muted); }
 
-  .stat-row{display:flex; gap:28px; margin-top:28px; flex-wrap:wrap;}
-  .stat b{display:block; font-size:1.7rem; letter-spacing:-0.02em;}
-  .stat span{font-size:0.78rem; color:var(--fg-muted);}
-
-  /* ---------- PRICING ---------- */
-  .pricing-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
-  @media (max-width:900px){.pricing-grid{grid-template-columns:1fr;}}
-  .price-card{
-    display:flex; flex-direction:column; gap:16px;
-    transition:transform .25s ease, box-shadow .25s ease;
+  /* ---------- Pricing ---------- */
+  .pricing-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:22px; }
+  .price-card{ display:flex; flex-direction:column; }
+  .price-card.featured{
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent), 0 30px 60px -30px rgba(15,107,98,0.4);
+    position: relative;
   }
-  .price-card:hover{transform:translateY(-6px); box-shadow:0 20px 34px -20px rgba(0,0,0,0.4);}
-  .price-card.pop{
-    border-color:var(--accent);
-    background:linear-gradient(180deg, color-mix(in srgb, var(--accent) 7%, var(--surface)), var(--surface));
+  .price-card.featured::after{
+    content: 'Empfohlen';
+    position:absolute; top:-12px; right:20px;
+    background: var(--accent); color:#fff;
+    font-size:0.7rem; font-weight:700; letter-spacing:0.04em;
+    padding: 4px 10px; border-radius:999px;
   }
-  .price-badge{
-    align-self:flex-start; font-size:0.68rem; font-weight:800; letter-spacing:0.04em;
-    text-transform:uppercase; color:#fff; background:var(--accent-2);
-    padding:4px 10px; border-radius:999px;
+  .price-card h3{ margin:0 0 6px; font-size:1.15rem; }
+  .price-card .price{
+    font-size: 2.1rem; font-weight:700; letter-spacing:-0.02em; margin: 10px 0 4px;
   }
-  .price-name{font-weight:800; font-size:1.1rem;}
-  .price-amount{font-size:2.1rem; font-weight:800; letter-spacing:-0.03em;}
-  .price-amount span{font-size:0.9rem; font-weight:500; color:var(--fg-muted);}
-  .price-feats{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:9px; font-size:0.86rem; color:var(--fg-muted);}
-  .price-feats li:before{content:"✓ "; color:var(--ok); font-weight:800;}
+  .price-card .price span{ font-size:0.95rem; font-weight:500; color: var(--fg-muted); }
+  .price-card ul{ list-style:none; margin: 22px 0; padding:0; flex-grow:1; }
+  .price-card li{
+    font-size:0.87rem; color: var(--fg-muted);
+    padding: 9px 0; border-top: 1px solid var(--border);
+    display:flex; gap:8px; align-items:flex-start;
+  }
+  .price-card li:first-child{ border-top:none; }
+  .price-card li::before{ content:'✓'; color: var(--accent); font-weight:700; }
 
-  /* ---------- FOOTER ---------- */
-  footer{border-top:1px solid var(--border); padding:44px 6vw 28px; margin-top:40px;}
-  .foot-grid{display:flex; justify-content:space-between; gap:40px; flex-wrap:wrap; margin-bottom:30px;}
-  .foot-col h5{font-size:0.8rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--fg-muted); margin:0 0 14px;}
-  .foot-col a{display:block; color:var(--fg); text-decoration:none; font-size:0.88rem; margin-bottom:9px; opacity:0.85;}
-  .foot-col a:hover{opacity:1; color:var(--accent);}
-  .foot-bottom{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; color:var(--fg-muted); font-size:0.78rem; padding-top:20px; border-top:1px solid var(--border);}
+  /* ---------- CTA band ---------- */
+  .cta-band{
+    border-radius: var(--radius);
+    background: linear-gradient(120deg, color-mix(in srgb, var(--accent) 18%, var(--surface)), var(--surface));
+    border: 1px solid var(--border);
+    padding: 56px 48px;
+    display:flex; align-items:center; justify-content:space-between; gap:30px; flex-wrap:wrap;
+  }
+  .cta-band h3{ margin:0 0 8px; font-size:1.6rem; letter-spacing:-0.02em; max-width:22ch; }
+  .cta-band p{ margin:0; color: var(--fg-muted); max-width: 40ch; }
 
-  /* reveal */
-  .reveal{opacity:1; transform:none;}
-  .reveal.js-anim{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease;}
-  .reveal.js-anim.in{opacity:1; transform:none;}
+  /* ---------- Footer ---------- */
+  footer{ border-top: 1px solid var(--border); padding: 50px 0 30px; }
+  .foot-grid{ display:grid; grid-template-columns: 1.4fr repeat(3,1fr); gap: 30px; margin-bottom: 40px; }
+  .foot-grid h5{ font-size:0.85rem; margin: 0 0 14px; color: var(--fg); }
+  .foot-grid a{ display:block; color: var(--fg-muted); text-decoration:none; font-size:0.85rem; margin-bottom:9px; }
+  .foot-grid a:hover{ color: var(--accent); }
+  .foot-bottom{
+    display:flex; justify-content:space-between; align-items:center;
+    padding-top: 24px; border-top:1px solid var(--border);
+    font-size: 0.78rem; color: var(--fg-muted); flex-wrap:wrap; gap:12px;
+  }
+
+  /* reveal animation - default visible */
+  .reveal{ animation: rise .7s ease both; }
+  @keyframes rise{
+    from{ opacity:0; transform: translateY(16px); }
+    to{ opacity:1; transform: translateY(0); }
+  }
+  .delay-1{ animation-delay: .08s; }
+  .delay-2{ animation-delay: .16s; }
+  .delay-3{ animation-delay: .24s; }
+  .delay-4{ animation-delay: .32s; }
+
+  @media (max-width: 900px){
+    .hero-visual .visual-grid{ grid-template-columns: 1fr; }
+    .stat-strip{ gap: 26px; }
+    .workflow{ grid-template-columns: 1fr 1fr; }
+    .pricing-grid{ grid-template-columns: 1fr; }
+    .foot-grid{ grid-template-columns: 1fr 1fr; }
+    .cta-band{ flex-direction:column; align-items:flex-start; }
+  }
+  @media (max-width: 600px){
+    .nav-links{ display:none; }
+    .workflow{ grid-template-columns: 1fr; }
+    .foot-grid{ grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
 
-<nav class="nav">
-  <div class="logo"><div class="logo-mark">AA</div> Audit Assistant</div>
-  <div class="nav-links">
-    <a href="#funktionen">Funktionen</a>
-    <a href="#ablauf">Ablauf</a>
-    <a href="#tiefe">Für Profis</a>
-    <a href="#preise">Preise</a>
-  </div>
-  <div class="nav-cta">
-    <a href="#preise" class="btn btn-ghost">Preise</a>
-    <a href="#demo" class="btn btn-wa">Per WhatsApp testen</a>
-  </div>
-</nav>
+<div class="container">
+  <nav class="navbar">
+    <div class="brand-mark"><span class="dot"></span> Audit Assistant</div>
+    <div class="nav-links">
+      <a href="#funktionen">Funktionen</a>
+      <a href="#ablauf">Ablauf</a>
+      <a href="#preise">Preise</a>
+      <a href="#kontakt" class="btn btn-ghost" style="padding:8px 18px;">Demo anfragen</a>
+    </div>
+  </nav>
+</div>
 
-<header class="hero section">
-  <div class="container hero-grid">
-    <div>
-      <div class="kicker"><span class="dot"></span> Für Bau- & Versicherungssachverständige</div>
-      <h1 class="headline">Vom Schadensfoto zum fertigen <em>Gutachten</em> — per WhatsApp.</h1>
-      <p class="sub">Audit Assistant ist der autonome KI-Assistent, der Fotos analysiert, Diktate transkribiert, Belege einordnet und daraus vollständige Gutachtenentwürfe zusammensetzt — im Stil, den Sie selbst geprägt haben.</p>
-      <div class="hero-cta">
-        <a href="#demo" class="btn btn-wa" id="demoBtn">
-          <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.5 0 9.96-4.46 9.96-9.96C21.99 6.46 17.54 2 12.04 2Z"/></svg>
-          Live-Demo per WhatsApp starten
-        </a>
-        <a href="#funktionen" class="btn btn-ghost">Funktionen ansehen</a>
-      </div>
-      <div class="trust-row">
-        <span><b>1</b> Nachricht → <b>1</b> Vorgang</span>
-        <span><b>Stilarchiv</b> lernt mit jedem Fall</span>
-        <span><b>Vorlagen</b> pro Mandant anpassbar</span>
-      </div>
+<section class="hero">
+  <div class="container">
+    <span class="eyebrow reveal">● Für Sachverständige & Schadensregulierer</span>
+    <h1 class="reveal delay-1">Vom Diktat zum fertigen <em>Gutachten</em> — nicht vom leeren Blatt.</h1>
+    <p class="lead reveal delay-2">
+      Audit Assistant fügt Falldaten, Diktat, Fotos und Angebote automatisch zu einem vollständigen
+      Kfz-Gutachten zusammen — und lernt dabei kontinuierlich aus Ihrem eigenen Stilarchiv.
+      Für Bausachverständige, Versicherungssachverständige, Gutachter und Schadensregulierer.
+    </p>
+    <div class="hero-cta reveal delay-3">
+      <a href="#kontakt" class="btn">Demo anfragen</a>
+      <a href="#funktionen" class="btn btn-ghost">Funktionen ansehen</a>
     </div>
 
-    <div>
-      <div class="phone">
-        <div class="phone-screen">
-          <div class="phone-bar"><div class="av">🛠️</div> Audit Assistant</div>
-          <div class="chat">
-            <div class="bubble in">Neuer Vorgang: Wasserschaden Musterstr. 12. Fotos folgen.</div>
-            <div class="bubble in img"><div class="ph"></div></div>
-            <div class="bubble in img"><div class="ph"></div></div>
-            <div class="bubble out">Fotos erhalten. Schadensbild erkannt: Durchfeuchtung Estrich, ca. 8 m². Angebot des Handwerkers bitte als PDF.</div>
-            <div class="bubble in">📎 angebot_sanierung.pdf</div>
-            <div class="bubble out">Angebot ausgelesen und als Anlage 3 zugeordnet. Diktat läuft im Hintergrund — Entwurf in ca. 4 Min. fertig.</div>
-            <div class="typing"><span></span><span></span><span></span></div>
+    <div class="hero-visual reveal delay-4">
+      <div class="visual-topbar"><span></span><span></span><span></span></div>
+      <div class="visual-grid">
+        <div class="visual-block">
+          <strong>Werkbank — Fall #A-2291</strong>
+          Diktat transkribiert, Namen &amp; Kennzeichen erkannt. Stilarchiv-Vorschläge geladen.
+          <div class="pill-row">
+            <span class="pill">Diktat ✓</span>
+            <span class="pill">Fotos ✓</span>
+            <span class="pill">Angebot OCR ✓</span>
+          </div>
+          <div class="progress"><i></i></div>
+        </div>
+        <div class="visual-block">
+          <strong>Stilarchiv</strong>
+          1.284 archivierte Gutachten · Hybrid-Suche aktiv
+          <div class="pill-row">
+            <span class="pill">Kfz</span>
+            <span class="pill">Sturmschaden</span>
+            <span class="pill">Wasserschaden</span>
           </div>
         </div>
       </div>
     </div>
+
+    <div class="stat-strip">
+      <div class="stat"><div class="num" data-count="70">0</div><div class="label">% weniger Zeit bis zum Entwurf</div></div>
+      <div class="stat"><div class="num" data-count="24">0</div><div class="label">/7 Hintergrund-Transkription</div></div>
+      <div class="stat"><div class="num" data-count="100">0</div><div class="label">% Mandanten-eigene Vorlagen</div></div>
+      <div class="stat"><div class="num">∞</div><div class="label">Selbstlernendes Stilarchiv</div></div>
+    </div>
   </div>
-</header>
+</section>
 
 <section class="section" id="funktionen">
   <div class="container">
     <div class="section-head">
-      <div class="kicker" style="margin-bottom:12px;"><span class="dot"></span> Kernfunktionen</div>
-      <h2>Alles, was zwischen Ortstermin und fertigem Gutachten liegt.</h2>
-      <p class="muted">Sechs Bausteine, die zusammen den kompletten Weg vom Schadensfoto bis zur unterschriftsreifen Anlage abdecken.</p>
+      <span class="kicker">Kernfunktionen</span>
+      <h2>Alles, was ein Gutachten braucht — automatisch zusammengeführt.</h2>
+      <p class="muted">Kein Copy-Paste zwischen Diktiergerät, Fotoordner und Word-Vorlage. Audit Assistant übernimmt die Zusammenstellung, Sie prüfen und geben frei.</p>
     </div>
 
-    <div class="grid" style="grid-template-columns:repeat(3,1fr); gap:22px;">
-      <div class="card feat-card reveal js-anim">
-        <span class="feat-tag">Selbstlernend</span>
-        <div class="feat-icon">📚</div>
-        <h3>Self-Growing Stilarchiv</h3>
-        <p>Jedes abgeschlossene Gutachten fließt automatisch in Ihre persönliche Stil-Bibliothek — künftige Entwürfe klingen mehr nach Ihnen, nicht nach der KI.</p>
+    <div class="grid" style="grid-template-columns: repeat(3, 1fr); gap: 22px;">
+      <div class="card feature-card">
+        <span class="tag">Stilarchiv</span>
+        <div class="ico">◆</div>
+        <h3>Selbstwachsende Stilbibliothek</h3>
+        <p>Jedes abgeschlossene Gutachten wird automatisch archiviert und macht künftige Entwürfe präziser — Ihr persönlicher Formulierungsstil bleibt erhalten.</p>
       </div>
-      <div class="card feat-card reveal js-anim">
-        <span class="feat-tag">Multi-Modal</span>
-        <div class="feat-icon">🧩</div>
-        <h3>KI-Gutachten Assembly</h3>
-        <p>Falldaten, Diktat, Fotos und Belege werden zu einem vollständigen Kfz- bzw. Schadensgutachten zusammengesetzt — bereit zur Feinjustierung.</p>
+      <div class="card feature-card">
+        <span class="tag">Assembly</span>
+        <div class="ico">⌘</div>
+        <h3>Multi-modale KI-Zusammenstellung</h3>
+        <p>Falldaten, Diktat, Fotos und Rechnungsbelege werden zu einem vollständigen Kfz-Gutachten-Entwurf kombiniert — bereit zur Durchsicht.</p>
       </div>
-      <div class="card feat-card reveal js-anim">
-        <span class="feat-tag">Präzise</span>
-        <div class="feat-icon">🎙️</div>
-        <h3>Named-Entity-Aware Diktat</h3>
-        <p>Transkription erkennt Namen, Aktenzeichen, Versicherer und Positionen korrekt — statt generischer Spracherkennung.</p>
+      <div class="card feature-card">
+        <span class="tag">Diktat</span>
+        <div class="ico">✎</div>
+        <h3>Namens-sensitive Diktaterkennung</h3>
+        <p>Eigennamen, Kennzeichen und Fachbegriffe werden bei der Transkription korrekt erkannt statt phonetisch verfälscht.</p>
       </div>
-      <div class="card feat-card reveal js-anim">
-        <span class="feat-tag">Individuell</span>
-        <div class="feat-icon">🗂️</div>
-        <h3>Vorlagen-Editor</h3>
-        <p>Berichtsvorlagen pro Mandant oder Kanzlei anpassen — Textbausteine, Reihenfolge und Feldoptionen ganz nach Ihrem Standard.</p>
+      <div class="card feature-card">
+        <span class="tag">Vorlagen</span>
+        <div class="ico">▤</div>
+        <h3>Mandanten-eigene Berichtsvorlagen</h3>
+        <p>Vorlagen-Editor pro Mandant: Struktur, Textbausteine und Dropdown-Optionen passen sich Ihrer Kanzlei oder Ihrem Sachverständigenbüro an.</p>
       </div>
-      <div class="card feat-card reveal js-anim">
-        <span class="feat-tag">Automatisch</span>
-        <div class="feat-icon">🧾</div>
-        <h3>OCR-Anlagen-Pipeline</h3>
-        <p>Angebote und Rechnungen werden per OCR ausgelesen und direkt als korrekt nummerierte Anlage ins Gutachten einsortiert.</p>
+      <div class="card feature-card">
+        <span class="tag">OCR</span>
+        <div class="ico">▥</div>
+        <h3>Angebots- &amp; Rechnungs-OCR</h3>
+        <p>Kostenvoranschläge und Belege werden automatisch erfasst und als Anhang korrekt in das Gutachten einsortiert.</p>
       </div>
-      <div class="card feat-card reveal js-anim">
-        <span class="feat-tag">Im Hintergrund</span>
-        <div class="feat-icon">⚙️</div>
-        <h3>Background-Job-Infrastruktur</h3>
-        <p>Lange Diktate und Stil-Importe laufen asynchron im Hintergrund — Sie arbeiten weiter, während der Assistent verarbeitet.</p>
+      <div class="card feature-card">
+        <span class="tag">Infrastruktur</span>
+        <div class="ico">⟳</div>
+        <h3>Hintergrund-Jobs für Diktat &amp; Erfassung</h3>
+        <p>Lange Diktate und Massen-Uploads laufen asynchron im Hintergrund — die Oberfläche bleibt jederzeit reaktionsschnell.</p>
       </div>
+    </div>
+
+    <div class="mini-grid">
+      <div class="mini-item"><span class="dot2"></span><p><b>Sofort-Transkription:</b> Audio hochladen, Rohtext direkt in der Werkbank einfügen.</p></div>
+      <div class="mini-item"><span class="dot2"></span><p><b>Transkript-Bearbeitung:</b> Text neben der Audiospur ansehen, korrigieren, speichern.</p></div>
+      <div class="mini-item"><span class="dot2"></span><p><b>Status-Polling:</b> Fortschritt von Hintergrund-Diktaten live verfolgen.</p></div>
+      <div class="mini-item"><span class="dot2"></span><p><b>Hybrid-Suche im Stilarchiv:</b> Formulierungen aus alten Gutachten mit Quellenangabe wiederfinden.</p></div>
+      <div class="mini-item"><span class="dot2"></span><p><b>Statistik-Dashboard:</b> Bestandszahlen und Schadensarten-Verteilung auf einen Blick.</p></div>
+      <div class="mini-item"><span class="dot2"></span><p><b>Formularfeld-Verwaltung:</b> Versicherer-, Gutachter- und Schadensartlisten selbst pflegen.</p></div>
+      <div class="mini-item"><span class="dot2"></span><p><b>Foto-Anhänge:</b> Fallfotos automatisch als Anhang in das Gutachten geladen.</p></div>
+      <div class="mini-item"><span class="dot2"></span><p><b>Bulk-Stilimport:</b> Mehrere Altgutachten gesammelt ins Archiv einlesen, Fortschritt live sichtbar.</p></div>
     </div>
   </div>
 </section>
@@ -357,41 +420,26 @@ h2{font-size:clamp(1.8rem,4vw,2.8rem);letter-spacing:-.01em}
 <section class="section" id="ablauf">
   <div class="container">
     <div class="section-head">
-      <div class="kicker" style="margin-bottom:12px;"><span class="dot"></span> Ablauf</div>
-      <h2>Vier Nachrichten bis zum Entwurf.</h2>
+      <span class="kicker">Ablauf</span>
+      <h2>Vom Fall zum freigegebenen Gutachten.</h2>
     </div>
-    <div class="steps">
-      <div class="step reveal js-anim"><div class="step-num">1</div><h4>Vorgang anlegen</h4><p>Kurze Nachricht mit Adresse und Schadenstyp per WhatsApp — der Vorgang wird automatisch angelegt.</p><div class="step-line"></div></div>
-      <div class="step reveal js-anim"><div class="step-num">2</div><h4>Fotos & Diktat senden</h4><p>Schadensfotos und ein gesprochenes Diktat werden empfangen, sofort oder im Hintergrund transkribiert.</p><div class="step-line"></div></div>
-      <div class="step reveal js-anim"><div class="step-num">3</div><h4>Belege einreichen</h4><p>Angebote und Rechnungen als PDF/Foto — die OCR-Pipeline ordnet sie automatisch als Anlage zu.</p><div class="step-line"></div></div>
-      <div class="step reveal js-anim"><div class="step-num">4</div><h4>Entwurf erhalten</h4><p>Der Assistent liefert das fertige Gutachten im Stil Ihres Archivs — Sie prüfen, korrigieren, geben frei.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="tiefe">
-  <div class="container">
-    <div class="deep">
-      <div>
-        <div class="kicker" style="margin-bottom:12px;"><span class="dot"></span> Für Profis, die tiefer gehen</div>
-        <h2 style="font-size:1.7rem; letter-spacing:-0.02em; margin:0 0 14px;">Unter der Haube: die Details, die den Unterschied machen.</h2>
-        <p class="muted" style="margin-bottom:26px;">Audit Assistant ist kein Chat-Spielzeug — jede Funktion ist für den täglichen Betrieb einer Gutachter-Praxis gebaut.</p>
-        <div class="stat-row">
-          <div class="stat"><b>2</b><span>Transkriptionsmodi: Sofort & Hintergrund</span></div>
-          <div class="stat"><b>1</b><span>Klick für Bulk-Stil-Import</span></div>
-          <div class="stat"><b>Live</b><span>Status-Polling für alle Jobs</span></div>
-        </div>
+    <div class="workflow">
+      <div class="wf-step">
+        <h4>Fall anlegen</h4>
+        <p>Falldaten, Fotos und Belege in der Werkbank erfassen.</p>
       </div>
-      <ul class="deep-list">
-        <li class="reveal js-anim"><span class="chk">✓</span><div><b>Sofort-Transkription</b><span>Audio hochladen, Rohtranskript sofort in die Werkbank übernehmen.</span></div></li>
-        <li class="reveal js-anim"><span class="chk">✓</span><div><b>Hintergrund-Diktat-Queue</b><span>Lange Diktate blockieren die Oberfläche nicht — Verarbeitung läuft asynchron.</span></div></li>
-        <li class="reveal js-anim"><span class="chk">✓</span><div><b>Status-Polling</b><span>Die UI fragt Jobstatus ab und lädt aktualisierte Fallfelder automatisch nach.</span></div></li>
-        <li class="reveal js-anim"><span class="chk">✓</span><div><b>Transkript-Bearbeitung</b><span>Rohtext neben der Audiospur einsehen, korrigieren und speichern.</span></div></li>
-        <li class="reveal js-anim"><span class="chk">✓</span><div><b>Einzel- & Bulk-Stil-Import</b><span>Alte Gutachten als PDF/DOCX einzeln oder gesammelt ins Stilarchiv einlesen.</span></div></li>
-        <li class="reveal js-anim"><span class="chk">✓</span><div><b>Auto-Archivierung</b><span>Abgeschlossene Fälle werden automatisch im Stilarchiv abgelegt.</span></div></li>
-        <li class="reveal js-anim"><span class="chk">✓</span><div><b>Hybrid-Suche im Stilarchiv</b><span>Textbausteine früherer Gutachten mit Quellenangabe wiederfinden.</span></div></li>
-        <li class="reveal js-anim"><span class="chk">✓</span><div><b>Feldoptionen verwalten</b><span>Dropdown-Listen für Versicherer, Sachverständige und Schadenstypen selbst pflegen.</span></div></li>
-      </ul>
+      <div class="wf-step">
+        <h4>Diktieren</h4>
+        <p>Audio hochladen — sofort oder als Hintergrund-Job transkribiert.</p>
+      </div>
+      <div class="wf-step">
+        <h4>Entwurf generieren</h4>
+        <p>KI stellt Gutachten aus Daten, Diktat, Fotos & Stilarchiv zusammen.</p>
+      </div>
+      <div class="wf-step">
+        <h4>Prüfen & archivieren</h4>
+        <p>Freigeben, abschließen — der Fall fließt automatisch ins Stilarchiv zurück.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -399,106 +447,144 @@ h2{font-size:clamp(1.8rem,4vw,2.8rem);letter-spacing:-.01em}
 <section class="section" id="preise">
   <div class="container">
     <div class="section-head">
-      <div class="kicker" style="margin-bottom:12px;"><span class="dot"></span> Preise</div>
-      <h2>Passend für Einzelgutachter bis Kanzlei.</h2>
-      <p class="muted">Alle Pläne enthalten WhatsApp-Anbindung, Diktat-Transkription und Ihr persönliches Stilarchiv.</p>
+      <span class="kicker">Preise</span>
+      <h2>Passend für Einzelbüro bis Sachverständigen-Kanzlei.</h2>
+      <p class="muted">Feste Konditionen nach Fallvolumen und Anzahl aktiver Nutzer — unverbindlich anfragen.</p>
     </div>
     <div class="pricing-grid">
-      <div class="card price-card reveal js-anim">
-        <div class="price-name">Solo</div>
-        <div class="price-amount">89€ <span>/ Monat</span></div>
-        <ul class="price-feats">
-          <li>1 Sachverständiger</li>
-          <li>Sofort-Diktat-Transkription</li>
-          <li>Stilarchiv bis 200 Gutachten</li>
-          <li>Standard-Vorlagen</li>
+      <div class="card price-card">
+        <h3>Solo</h3>
+        <div class="price">€149<span>/Monat</span></div>
+        <p class="muted" style="font-size:0.85rem;">Für einzelne Sachverständige.</p>
+        <ul>
+          <li>Bis 40 Gutachten / Monat</li>
+          <li>Diktat-Transkription inkl.</li>
+          <li>Persönliches Stilarchiv</li>
+          <li>1 Vorlage</li>
         </ul>
-        <a href="#demo" class="btn btn-ghost" style="margin-top:auto;">Auswählen</a>
+        <a href="#kontakt" class="btn btn-ghost" style="width:100%; text-align:center;">Anfragen</a>
       </div>
-      <div class="card price-card pop reveal js-anim">
-        <div class="price-badge">Beliebt</div>
-        <div class="price-name">Team</div>
-        <div class="price-amount">249€ <span>/ Monat</span></div>
-        <ul class="price-feats">
-          <li>Bis 5 Sachverständige</li>
-          <li>Hintergrund-Jobs & Status-Polling</li>
-          <li>Bulk-Stil-Import</li>
+      <div class="card price-card featured">
+        <h3>Kanzlei</h3>
+        <div class="price">€429<span>/Monat</span></div>
+        <p class="muted" style="font-size:0.85rem;">Für Büros mit mehreren Gutachtern.</p>
+        <ul>
+          <li>Unbegrenzte Gutachten</li>
+          <li>Hintergrund-Jobs & Bulk-Import</li>
           <li>Vorlagen-Editor pro Mandant</li>
-          <li>OCR-Anlagen-Pipeline</li>
+          <li>Team-Stilarchiv & Hybrid-Suche</li>
         </ul>
-        <a href="#demo" class="btn btn-wa" style="margin-top:auto;">Auswählen</a>
+        <a href="#kontakt" class="btn" style="width:100%; text-align:center;">Demo anfragen</a>
       </div>
-      <div class="card price-card reveal js-anim">
-        <div class="price-name">Kanzlei</div>
-        <div class="price-amount">Individuell</div>
-        <ul class="price-feats">
-          <li>Unbegrenzte Nutzer</li>
-          <li>Unbegrenztes Stilarchiv</li>
-          <li>Eigene Feldoptionen & Vorlagen</li>
-          <li>Priorisierter Support</li>
+      <div class="card price-card">
+        <h3>Enterprise</h3>
+        <div class="price">Individuell</div>
+        <p class="muted" style="font-size:0.85rem;">Für Versicherer & große Regulierungsteams.</p>
+        <ul>
+          <li>Mandantenfähige Bereitstellung</li>
+          <li>SLA & priorisierte Warteschlangen</li>
+          <li>Eigene Formularfeld-Verwaltung</li>
+          <li>Onboarding & Schulung</li>
         </ul>
-        <a href="#demo" class="btn btn-ghost" style="margin-top:auto;">Kontakt aufnehmen</a>
+        <a href="#kontakt" class="btn btn-ghost" style="width:100%; text-align:center;">Kontakt aufnehmen</a>
       </div>
     </div>
   </div>
 </section>
 
-<footer id="demo">
+<section class="section" id="kontakt">
+  <div class="container">
+    <div class="cta-band">
+      <div>
+        <h3>Bereit für schnellere Gutachten?</h3>
+        <p>Vereinbaren Sie eine kurze Demo — wir zeigen Ihnen Ihren eigenen Fall im System.</p>
+      </div>
+      <a href="mailto:hello@auditassistant.example" class="btn">Demo anfragen →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
   <div class="container">
     <div class="foot-grid">
-      <div class="foot-col" style="max-width:280px;">
-        <div class="logo" style="margin-bottom:12px;"><div class="logo-mark">AA</div>Audit Assistant</div>
-        <p class="muted" style="font-size:0.86rem;">Der autonome Assistent für Bau- und Versicherungssachverständige, Gutachter und Schadensregulierer.</p>
+      <div>
+        <div class="brand-mark" style="margin-bottom:12px;"><span class="dot"></span> Audit Assistant</div>
+        <p class="muted" style="font-size:0.85rem; max-width:32ch;">KI-gestützte Gutachtenerstellung für Bausachverständige, Versicherungssachverständige, Gutachter und Schadensregulierer.</p>
       </div>
-      <div class="foot-col">
+      <div>
         <h5>Produkt</h5>
         <a href="#funktionen">Funktionen</a>
         <a href="#ablauf">Ablauf</a>
-        <a href="#tiefe">Für Profis</a>
         <a href="#preise">Preise</a>
       </div>
-      <div class="foot-col">
-        <h5>Kontakt</h5>
-        <a href="#">WhatsApp-Demo starten</a>
-        <a href="#">Termin vereinbaren</a>
-        <a href="#">support@auditassistant.de</a>
+      <div>
+        <h5>Ressourcen</h5>
+        <a href="#kontakt">Demo anfragen</a>
+        <a href="#kontakt">Kontakt</a>
+        <a href="#kontakt">Support</a>
+      </div>
+      <div>
+        <h5>Rechtliches</h5>
+        <a href="#kontakt">Datenschutz</a>
+        <a href="#kontakt">Impressum</a>
+        <a href="#kontakt">AGB</a>
       </div>
     </div>
     <div class="foot-bottom">
-      <span>© 2024 Audit Assistant. Alle Rechte vorbehalten.</span>
-      <span>Made for Sachverständige, die lieber vor Ort sind als am Schreibtisch.</span>
+      <span>© <span id="year"></span> Audit Assistant. Alle Rechte vorbehalten.</span>
+      <span>Gebaut für Sachverständige, die weniger tippen wollen.</span>
     </div>
   </div>
 </footer>
 
 <script>
-  // Scroll reveal — default state is already visible via CSS; JS only enhances.
-  (function(){
-    var els = document.querySelectorAll('.js-anim');
-    if(!('IntersectionObserver' in window)){
-      els.forEach(function(e){ e.classList.add('in'); });
-      return;
-    }
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-        if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
-      });
-    }, {threshold:0.12});
-    els.forEach(function(e){ io.observe(e); });
-    // fallback: reveal all shortly after load in case observer misses something
-    setTimeout(function(){ els.forEach(function(e){ e.classList.add('in'); }); }, 1200);
-  })();
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-  // subtle tilt on phone mockup follow
-  var phone = document.querySelector('.phone');
-  if(phone){
-    document.addEventListener('mousemove', function(e){
-      var r = phone.getBoundingClientRect();
-      var cx = r.left + r.width/2, cy = r.top + r.height/2;
-      var dx = (e.clientX - cx) / 40, dy = (e.clientY - cy) / 40;
-      phone.style.transform = 'rotate('+ (1.5 - dx*0.3) +'deg) translate('+ (dx*0.5) +'px,'+ (dy*0.5) +'px)';
+  // Animated counters (visual enhancement only — values already meaningful without JS)
+  document.querySelectorAll('.stat .num[data-count]').forEach(function(el){
+    var target = parseInt(el.getAttribute('data-count'), 10);
+    var started = false;
+    function animate(){
+      if(started) return;
+      started = true;
+      var current = 0;
+      var step = Math.max(1, Math.round(target / 40));
+      var iv = setInterval(function(){
+        current += step;
+        if(current >= target){ current = target; clearInterval(iv); }
+        el.textContent = current;
+      }, 18);
+    }
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting) animate(); });
+      }, { threshold: 0.4 });
+      io.observe(el);
+    } else {
+      el.textContent = target;
+    }
+  });
+
+  // subtle tilt on feature cards
+  document.querySelectorAll('.feature-card').forEach(function(card){
+    card.addEventListener('mousemove', function(e){
+      var r = card.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - 0.5;
+      var y = (e.clientY - r.top) / r.height - 0.5;
+      card.style.transform = 'translateY(-6px) rotateX(' + (y * -4) + 'deg) rotateY(' + (x * 4) + 'deg)';
     });
-  }
+    card.addEventListener('mouseleave', function(){
+      card.style.transform = '';
+    });
+  });
+
+  // gentle nav shadow on scroll
+  var nav = document.querySelector('.navbar');
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > 8){ nav.style.boxShadow = '0 6px 24px -18px rgba(0,0,0,0.5)'; }
+    else { nav.style.boxShadow = 'none'; }
+  });
 </script>
+
 </body>
 </html>
