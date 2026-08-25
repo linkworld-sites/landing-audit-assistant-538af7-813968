@@ -16,9 +16,9 @@ export default async function LegalPage({
   const page = getLegalPage(slug);
   if (!page) notFound();
   return (
-    <main className="mx-auto max-w-3xl px-6 py-24 md:py-32">
+    <main className="mx-auto max-w-3xl bg-paper px-6 py-24 text-ink md:py-32">
       <article
-        className="post-body"
+        className="post-body border-t border-black/10 pt-10"
         dangerouslySetInnerHTML={{ __html: page.html }}
       />
     </main>
