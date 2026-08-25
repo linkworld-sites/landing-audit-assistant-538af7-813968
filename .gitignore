@@ -9,3 +9,5 @@ output/
 .DS_Store
 *.log
 .mcp.json
+*.tsbuildinfo
+next-env.d.ts
