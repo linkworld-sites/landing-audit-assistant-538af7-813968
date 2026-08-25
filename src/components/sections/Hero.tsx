@@ -29,6 +29,9 @@ export function Hero() {
           <a href="#werkbank" className="hover:text-white">
             So funktioniert&apos;s
           </a>
+          <a href="/pricing" className="hover:text-white">
+            Preise
+          </a>
           <a href="/blog" className="hover:text-white">
             Blog
           </a>
