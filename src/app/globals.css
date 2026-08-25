@@ -23,6 +23,8 @@ html.lenis body {
 .post-body blockquote { border-left: 2px solid currentColor; padding-left: 1em; opacity: 0.8; margin: 1.5em 0; }
 .post-body img { border-radius: 0.5em; margin: 1.5em 0; }
 .post-body strong { font-weight: 600; }
+.post-body .post-cta { text-decoration: none; }
+.post-body .post-cta:hover { opacity: 0.9; }
 
 /* Craft kit — calibrated material recipes, do not re-derive values. */
 .liquid-glass {

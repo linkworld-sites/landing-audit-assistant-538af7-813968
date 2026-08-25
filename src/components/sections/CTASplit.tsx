@@ -50,6 +50,9 @@ export function CTASplit() {
             <a href="#werkbank" className="hover:text-white">
               So funktioniert&apos;s
             </a>
+            <Link href="/pricing" className="hover:text-white">
+              Preise
+            </Link>
             <Link href="/blog" className="hover:text-white">
               Blog
             </Link>

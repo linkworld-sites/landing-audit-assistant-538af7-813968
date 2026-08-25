@@ -1,10 +1,10 @@
 ---
-title: Vom Diktat zum Gutachten — wie Audit Assistant Ihren Bericht zusammensetzt
+title: Vom Diktat zum fertigen Gutachten — in Minuten, nicht Stunden
 date: 2026-08-25
-description: Ein Blick in den Werkbank-Workflow von Audit Assistant — von der Ortsbegehung bis zum verteidigungsfähigen Entwurf.
+description: Wie Audit Assistant aus Diktat, Fotos und Belegen einen vollständigen, verteidigungsfähigen Gutachten-Entwurf zusammensetzt — in Ihrem eigenen Stil.
 ---
 
-Ein Gutachten für einen Wasser- oder Brandschaden entsteht selten am Schreibtisch. Es beginnt vor Ort: mit einem Diktat, ein paar Fotos und einem Stapel Angebote, die später noch ausgewertet werden müssen. Genau an diesem Punkt setzt Audit Assistant an.
+Aus einem Diktat vor Ort, ein paar Fotos und einem Stapel Angebote macht Audit Assistant einen vollständigen, verteidigungsfähigen Gutachten-Entwurf — automatisch zusammengesetzt, in Ihrem eigenen Stil, einsatzbereit zur Prüfung. Es beginnt dort, wo jedes Gutachten beginnt: nicht am Schreibtisch, sondern vor Ort.
 
 ## Drei Eingaben, ein Fall
 
@@ -18,4 +18,6 @@ Jeder abgeschlossene Fall kann automatisch in Ihr persönliches Stilarchiv einfl
 
 Bevor ein Entwurf an Sie zur Freigabe geht, prüft Audit Assistant ihn selbst noch einmal — eine automatische Kritik, die Lücken oder Unstimmigkeiten markiert. Die letzte fachliche Entscheidung bleibt bei Ihnen; automatisiert wird die Zusammenstellung, nicht das Urteil.
 
-Wenn Sie sehen möchten, wie das für einen Ihrer Fälle aussieht, [zeigen Sie uns einen Fall](/#anfrage).
+<p class="mt-10 border-t border-black/10 pt-8">
+  <a href="/#anfrage" class="post-cta bg-accent px-7 py-3.5 text-sm uppercase tracking-[0.12em] text-white inline-block">Zugang anfragen →</a>
+</p>
