@@ -25,9 +25,21 @@ const REPORT_SECTIONS = [
 ];
 
 const THUMBS = [
-  { src: "/images/detail.png", id: "F-2026-0341" },
-  { src: "/images/material.png", id: "F-2026-0342" },
-  { src: "/images/process.png", id: "F-2026-0343" },
+  {
+    src: "/images/detail.png",
+    id: "F-2026-0341",
+    alt: "Nahaufnahme eines Schadensdetails am Bauteil, Beleg zu Fall F-2026-0341",
+  },
+  {
+    src: "/images/material.png",
+    id: "F-2026-0342",
+    alt: "Fotodokumentation des betroffenen Materials, Beleg zu Fall F-2026-0342",
+  },
+  {
+    src: "/images/process.png",
+    id: "F-2026-0343",
+    alt: "Vor-Ort-Aufnahme während der Begutachtung, Beleg zu Fall F-2026-0343",
+  },
 ];
 
 function ScrollReveal({
@@ -178,7 +190,7 @@ export function Werkbank() {
                 range={[0.5 + i * 0.05, 0.58 + i * 0.05]}
                 className="relative h-14 w-20 shrink-0 border border-black/15"
               >
-                <Image src={t.src} alt="" fill sizes="80px" className="object-cover" />
+                <Image src={t.src} alt={t.alt} fill sizes="80px" className="object-cover" />
                 <span className="absolute -bottom-5 left-0 whitespace-nowrap font-mono text-[9px] text-black/50">
                   {t.id}
                 </span>
