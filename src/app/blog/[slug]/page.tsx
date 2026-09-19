@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getPost, getPosts } from "@/lib/posts";
+import { SITE_URL } from "@/lib/site";
 
 export function generateStaticParams() {
   return getPosts().map((p) => ({ slug: p.slug }));
@@ -30,8 +31,25 @@ export default async function BlogPost({
   const { slug } = await params;
   const post = getPost(slug);
   if (!post) notFound();
+  const url = `${SITE_URL}/blog/${post.slug}`;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.description,
+    datePublished: post.date || undefined,
+    dateModified: post.date || undefined,
+    url,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    author: { "@type": "Organization", name: "Audit Assistant", url: SITE_URL },
+    publisher: { "@type": "Organization", name: "Audit Assistant", url: SITE_URL },
+  };
   return (
     <main className="mx-auto min-h-screen max-w-3xl bg-paper px-6 py-24 text-ink md:py-32">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Link
         href="/blog"
         className="text-[11px] uppercase tracking-[0.18em] text-accent underline-offset-4 hover:underline"
