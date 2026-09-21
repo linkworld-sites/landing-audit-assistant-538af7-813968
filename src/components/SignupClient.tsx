@@ -67,8 +67,12 @@ export function SignupClient() {
         02 — Anmeldung
       </span>
       <h1 className="mt-4 max-w-[640px] text-[clamp(2.5rem,5vw,4rem)] font-normal leading-[1.05] tracking-tight">
-        Abo einrichten.
+        Ihr erster Entwurf beginnt hier.
       </h1>
+      <p className="mt-5 max-w-[520px] text-[15px] leading-[1.6] text-ink/60">
+        Wir schalten Ihren Arbeitsbereich frei und lesen Ihre bisherigen Gutachten ins
+        Stilarchiv ein — damit der erste Entwurf schon in Ihrem Stil steht.
+      </p>
 
       <div className="mt-14 grid grid-cols-1 gap-12 border-t border-ink/10 pt-12 md:grid-cols-[1fr_360px]">
         {sent ? (
@@ -116,7 +120,7 @@ export function SignupClient() {
               disabled={busy || !loaded}
               className="mt-2 justify-self-start bg-ink px-7 py-3.5 text-sm uppercase tracking-[0.12em] text-white transition-opacity hover:opacity-90 disabled:opacity-50"
             >
-              {busy ? "Wird gestartet…" : "Abo starten"}
+              {busy ? "Wird aktiviert…" : "Zugang aktivieren"}
             </button>
           </form>
         )}
