@@ -8,12 +8,18 @@ import { marked } from "marked";
  * it is auto-indexed on /blog and auto-linked. A malformed file is skipped,
  * never crashes the site.
  */
+export interface PostFaqItem {
+  q: string;
+  a: string;
+}
+
 export interface Post {
   slug: string;
   title: string;
   date: string;
   description: string;
   html: string;
+  faq: PostFaqItem[];
 }
 
 const POSTS_DIR = path.join(process.cwd(), "content", "posts");
@@ -51,12 +57,27 @@ export function getPosts(): Post[] {
       const raw = fs.readFileSync(path.join(POSTS_DIR, file), "utf8");
       const { meta, body } = parseFrontmatter(raw);
       const slug = (meta.slug || file.replace(/\.md$/, "")).toLowerCase();
+      let faq: PostFaqItem[] = [];
+      if (meta.faq) {
+        try {
+          const parsed = JSON.parse(meta.faq);
+          if (Array.isArray(parsed)) {
+            faq = parsed.filter(
+              (item): item is PostFaqItem =>
+                item && typeof item.q === "string" && typeof item.a === "string"
+            );
+          }
+        } catch {
+          faq = [];
+        }
+      }
       posts.push({
         slug,
         title: meta.title || slug,
         date: meta.date || "",
         description: meta.description || "",
         html: marked.parse(body, { async: false }) as string,
+        faq,
       });
     } catch {
       continue;
