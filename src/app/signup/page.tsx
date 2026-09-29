@@ -24,6 +24,9 @@ export default function SignupPage() {
           <Link href="/blog" className="hover:text-ink">
             Blog
           </Link>
+          <Link href="/faq" className="hover:text-ink">
+            FAQ
+          </Link>
         </nav>
       </header>
       <Suspense fallback={null}>

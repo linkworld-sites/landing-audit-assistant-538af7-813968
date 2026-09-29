@@ -24,6 +24,9 @@ export default async function PricingPage() {
           <Link href="/blog" className="hover:text-ink">
             Blog
           </Link>
+          <Link href="/faq" className="hover:text-ink">
+            FAQ
+          </Link>
           <Link href="/#anfrage" className="hover:text-ink">
             Kontakt
           </Link>
