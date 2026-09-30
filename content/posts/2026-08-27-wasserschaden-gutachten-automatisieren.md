@@ -23,6 +23,8 @@ Statt Sprachmemo, Fotoordner und Rechnungsstapel getrennt zu verwalten, führt A
 
 Die automatische Archivierung abgeschlossener Fälle ist kein Ablagesystem, sondern ein wachsender Bestand: Jeder Wasserschadenfall, den Sie freigeben, verbessert die Formulierungsvorschläge für den nächsten. Damit wird aus jedem einzelnen Gutachten ein kleiner Baustein für das nächste — automatisiert zusammengestellt, aber weiterhin von Ihnen geprüft, freigegeben und unterschrieben.
 
+Die gleiche Arbeitsweise gilt für [Brand-, Sturm- und Schimmelschaden-Gutachten](/leistungen/brand-sturm-schimmelschaden-gutachten).
+
 <p class="mt-10 border-t border-black/10 pt-8">
   <a href="/#anfrage" class="post-cta bg-accent px-7 py-3.5 text-sm uppercase tracking-[0.12em] text-white inline-block">Zugang anfragen →</a>
 </p>

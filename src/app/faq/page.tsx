@@ -73,7 +73,13 @@ export default function FAQPage() {
           ))}
         </div>
 
-        <p className="mt-16">
+        <p className="mt-16 flex flex-wrap gap-x-8 gap-y-3">
+          <Link
+            href="/leistungen/brand-sturm-schimmelschaden-gutachten"
+            className="text-[11px] uppercase tracking-[0.18em] text-accent underline-offset-4 hover:underline"
+          >
+            Mehr zu Brand-, Sturm- und Schimmelschaden-Gutachten →
+          </Link>
           <Link
             href="/"
             className="text-[11px] uppercase tracking-[0.18em] text-accent underline-offset-4 hover:underline"

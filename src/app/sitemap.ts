@@ -5,7 +5,14 @@ import { getLegalSlugs } from "@/lib/legal";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const staticRoutes: MetadataRoute.Sitemap = ["", "/blog", "/pricing", "/signup", "/faq"].map((p) => ({
+  const staticRoutes: MetadataRoute.Sitemap = [
+    "",
+    "/blog",
+    "/pricing",
+    "/signup",
+    "/faq",
+    "/leistungen/brand-sturm-schimmelschaden-gutachten",
+  ].map((p) => ({
     url: `${SITE_URL}${p}`,
     lastModified: now,
   }));
