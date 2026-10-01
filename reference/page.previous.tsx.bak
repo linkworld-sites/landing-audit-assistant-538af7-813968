@@ -8,6 +8,7 @@ import { Werkbank } from "@/components/sections/Werkbank";
 import { Testimonial } from "@/components/sections/Testimonial";
 import { Stats } from "@/components/sections/Stats";
 import { Steps } from "@/components/sections/Steps";
+import { FAQ } from "@/components/sections/FAQ";
 import { CTASplit } from "@/components/sections/CTASplit";
 
 export const metadata: Metadata = {
@@ -25,6 +26,7 @@ export default function Home() {
       <Testimonial />
       <Stats />
       <Steps />
+      <FAQ />
       <CTASplit />
     </main>
   );
