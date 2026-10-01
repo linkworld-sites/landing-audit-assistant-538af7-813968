@@ -97,9 +97,9 @@ export function Werkbank() {
   const playheadX = useTransform(scrollYProgress, [0, 1], ["0%", "92%"]);
 
   return (
-    <section id="werkbank" ref={wrapperRef} className="relative h-[320vh] bg-paper text-ink">
-      <div className="sticky top-0 h-screen overflow-hidden border-t border-black/10">
-        <div className="mx-auto flex h-full max-w-[1400px] flex-col px-6 py-10 md:px-10">
+    <section id="werkbank" ref={wrapperRef} className="relative bg-paper text-ink md:h-[320vh]">
+      <div className="border-t border-black/10 md:sticky md:top-0 md:h-screen md:overflow-hidden">
+        <div className="mx-auto flex min-h-screen max-w-[1400px] flex-col px-6 py-10 md:h-full md:px-10">
           <div className="flex items-baseline justify-between border-b border-black/10 pb-6">
             <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-black/50">
               01 — Die Werkbank
@@ -107,7 +107,7 @@ export function Werkbank() {
             <WordStagger text="Vom Fall zum Entwurf" className="text-[clamp(1.75rem,3vw,2.5rem)] font-normal" />
           </div>
 
-          <div className="grid flex-1 grid-cols-1 gap-8 overflow-hidden py-8 md:grid-cols-12">
+          <div className="grid flex-1 grid-cols-1 gap-8 py-8 md:grid-cols-12 md:overflow-hidden">
             {/* Left: dictation waveform */}
             <div className="flex flex-col border-t border-black/10 pt-6 md:col-span-4 md:border-t-0 md:border-r md:pr-8 md:pt-0">
               <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-black/50">Aufnahme</span>
