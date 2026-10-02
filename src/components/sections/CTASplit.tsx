@@ -59,6 +59,9 @@ export function CTASplit() {
             <Link href="/faq" className="hover:text-white">
               FAQ
             </Link>
+            <Link href="/ueber-uns" className="hover:text-white">
+              Über uns
+            </Link>
             <Link href="/legal/impressum" className="hover:text-white">
               Impressum
             </Link>

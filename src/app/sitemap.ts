@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/pricing",
     "/signup",
     "/faq",
+    "/ueber-uns",
     "/leistungen/brand-sturm-schimmelschaden-gutachten",
   ].map((p) => ({
     url: `${SITE_URL}${p}`,

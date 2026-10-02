@@ -29,8 +29,51 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
-    { "@type": "Organization", name: "Audit Assistant", url: SITE_URL },
-    { "@type": "WebSite", name: "Audit Assistant", url: SITE_URL },
+    {
+      "@type": "Organization",
+      name: "Audit Assistant",
+      url: SITE_URL,
+      description:
+        "Audit Assistant verwandelt Diktat, Fotos und Belege per KI in vollständige, verteidigungsfähige Gutachten für Bau- und Versicherungsschäden — mit einem mitwachsenden, kanzleieigenen Stilarchiv.",
+      knowsAbout: [
+        "Bauschaden-Gutachten",
+        "Versicherungsschaden-Gutachten",
+        "Wasserschaden-Gutachten",
+        "Brandschaden-Gutachten",
+        "Sturmschaden-Gutachten",
+        "Schimmelschaden-Gutachten",
+        "Diktat-Transkription für Sachverständige",
+        "Stilarchiv und Vorlagenverwaltung für Gutachten",
+      ],
+    },
+    { "@type": "WebSite", name: "Audit Assistant", url: SITE_URL, inLanguage: "de" },
+    {
+      "@type": "SoftwareApplication",
+      name: "Audit Assistant",
+      url: SITE_URL,
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Web",
+      description:
+        "KI-gestützte Gutachten-Zusammenstellung für Bau- und Versicherungssachverständige: Diktat-Transkription, Foto- und Belegverarbeitung, tenant-eigenes Stilarchiv und editierbare Vorlagen.",
+      offers: [
+        {
+          "@type": "Offer",
+          name: "Solo",
+          price: "89.00",
+          priceCurrency: "EUR",
+          description:
+            "Für Einzelsachverständige. Bis 15 Gutachten pro Monat, eigenes Stilarchiv, Diktat- und Foto-Workflow.",
+        },
+        {
+          "@type": "Offer",
+          name: "Kanzlei",
+          price: "249.00",
+          priceCurrency: "EUR",
+          description:
+            "Für Teams und Kanzleien. Unbegrenzte Gutachten, mehrere Nutzer, geteiltes Stilarchiv und Vorlagen.",
+        },
+      ],
+    },
   ],
 };
 
