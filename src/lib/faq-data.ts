@@ -23,4 +23,16 @@ export const FAQS = [
     q: "Welche Pläne gibt es und für wen sind sie gedacht?",
     a: "Solo (89 € / Monat) für Einzelsachverständige mit bis zu 15 Gutachten monatlich und eigenem Stilarchiv. Kanzlei (249 € / Monat) für Teams mit unbegrenzten Gutachten, mehreren Nutzern sowie geteiltem Stilarchiv und Vorlagen.",
   },
+  {
+    q: "Was unterscheidet Audit Assistant von einem generischen KI-Chatbot wie ChatGPT?",
+    a: "Ein generischer Chatbot kennt weder die eigene Kanzlei noch ihren Berichtsstil. Audit Assistant arbeitet dagegen auf dem tenant-eigenen Stilarchiv — automatisch aus abgeschlossenen Fällen aufgebaut und per hybrider Suche mit zitierfähigen Ausschnitten durchsuchbar — und füllt dabei die eigene, im Vorlagen-Editor hinterlegte Berichtsvorlage statt einer generischen Textvorlage. Dieser kanzleieigene Datenbestand lässt sich nicht kopieren, ohne dieselben Fälle über Jahre selbst bearbeitet zu haben.",
+  },
+  {
+    q: "Wie unterscheidet sich Audit Assistant von anderer Gutachten-Software?",
+    a: "Der Unterschied liegt nicht in einem einzelnen Feature, sondern in der Kombination: automatische Foto-Zuordnung, OCR von Angeboten und Rechnungen sowie satzgenaue Bildplatzierung laufen in einer einzigen Generierungspipeline zusammen, während Diktat-Transkription und Stilarchiv-Import als Hintergrundjobs parallel zum Fall weiterarbeiten. Je mehr abgeschlossene Gutachten eine Kanzlei einbringt, desto präziser wird das eigene Stilarchiv — ein Vorsprung, der mit jedem Fall wächst.",
+  },
+  {
+    q: "Lässt sich Audit Assistant aus einer eigenen KI-Assistenz-Plattform heraus ansteuern?",
+    a: "Ja. Die Gutachten-Erstellung ist als Werkzeugsatz für KI-Assistenten nutzbar und lässt sich damit in eine bestehende Assistenz-Umgebung einbinden, statt nur als isoliertes Formular-zu-Dokument-Tool zu funktionieren.",
+  },
 ] as const;

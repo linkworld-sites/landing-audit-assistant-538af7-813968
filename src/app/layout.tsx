@@ -55,6 +55,13 @@ const jsonLd = {
       operatingSystem: "Web",
       description:
         "KI-gestützte Gutachten-Zusammenstellung für Bau- und Versicherungssachverständige: Diktat-Transkription, Foto- und Belegverarbeitung, tenant-eigenes Stilarchiv und editierbare Vorlagen.",
+      featureList: [
+        "Selbstwachsendes Stilarchiv mit hybrider Suche aus eigenen abgeschlossenen Gutachten",
+        "Automatische Anwendung der tenant-eigenen Berichtsvorlage aus dem Vorlagen-Editor",
+        "Automatisierte Foto-Zuordnung, OCR und satzgenaue Belegeinbindung in einer Generierungspipeline",
+        "Hintergrund-Jobs für Diktat-Transkription und Stilarchiv-Import parallel zum laufenden Fall",
+        "Als Werkzeugsatz in KI-Assistenz-Plattformen einbindbare Gutachten-Erstellung",
+      ],
       offers: [
         {
           "@type": "Offer",
